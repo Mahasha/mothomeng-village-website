@@ -45,7 +45,7 @@
         <span><strong>Mothomeng</strong><small>Ga-Modjadji · Limpopo</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#village">Village</a><a href="#heritage">Heritage</a><a href="#lineage">Lineage</a><a href="#leadership">Leadership</a><a href="#today">Today</a><a href="#location">Location</a><a href="#contact">Contact</a>
+        <a href="#village">Village</a><a href="#heritage">Heritage</a><a href="#lineage">Lineage</a><a href="#leadership">Leadership</a><a href="#today">Today</a><a href="#living">Living Here</a><a href="#location">Location</a><a href="#contact">Contact</a>
       </nav>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </header>
@@ -181,7 +181,7 @@
         <form class="contact-form reveal" name="village-enquiry" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="village-enquiry" />
           <input type="hidden" name="subject" value="New Mothomeng Village website enquiry" />
-          <p class="honeypot"><label>Do not fill this out: <input name="bot-field" /></label></p>
+          <p class="honeypot" hidden aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="field-row"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
           <div class="field-row"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
           <div class="field-row"><label for="type">Enquiry type</label><select id="type" name="enquiry-type" required><option value="" selected disabled>Select one</option><option>Residence</option><option>Business or investment</option><option>Community matter</option><option>Heritage or culture</option><option>General enquiry</option></select></div>
