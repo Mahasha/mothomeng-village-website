@@ -48,7 +48,7 @@ The canonical, Open Graph, sitemap and robots URLs are already set to `https://m
 
 ## Content and image updates
 
-- The current Chief’s portrait is stored as `assets/chief-mapolokwane-aubrey-mahasha.jpeg`. Keep the original approved photograph and its meaningful alternative text if the layout is revised.
+- The current Headman’s portrait is stored as `assets/chief-mapolokwane-aubrey-mahasha.jpeg`. Keep the original approved photograph and its meaningful alternative text if the layout is revised.
 - Do not add stock or AI-generated people as village documentation. A future gallery should open only after enough authentic, permission-cleared Mothomeng photographs are available.
 - The 500-year estimate and early Mahasha lineage are labelled as oral history. Keep that qualification unless documentary sources are added.
 - The location section points to the exact Mothomeng Royal House pin supplied by the village: `https://maps.app.goo.gl/37qjnxW5KotMJM6Q8`.
@@ -60,7 +60,7 @@ The canonical, Open Graph, sitemap and robots URLs are already set to `https://m
 - `assets/styles.css` — responsive visual system
 - `assets/site.js` — menu, header and reveal behaviour
 - `assets/og-mothomeng.png` — social sharing card
-- `assets/chief-mapolokwane-aubrey-mahasha.jpeg` — approved portrait of the current Chief
+- `assets/chief-mapolokwane-aubrey-mahasha.jpeg` — approved portrait of the current Headman
 - `netlify.toml` — build, caching and security headers
 - `robots.txt`, `sitemap.xml`, `site.webmanifest` — discovery and install metadata
 - `scripts/` — dependency-free local server and project checks

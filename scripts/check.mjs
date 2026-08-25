@@ -16,15 +16,20 @@ if (brokenHashLinks.length) {
   process.exit(1);
 }
 
-const expectedMenuTargets = ['village','heritage','lineage','leadership','today','location','contact'];
+const expectedMenuTargets = ['village','heritage','lineage','leadership','today','living','location','contact'];
 const missingMenuTargets = expectedMenuTargets.filter((target) => !hashLinks.includes(target) || !ids.has(target));
 if (missingMenuTargets.length) {
   console.error(`Required menu routes are missing:\n- ${missingMenuTargets.join('\n- ')}`);
   process.exit(1);
 }
 
-if (!html.includes('Mr. Mapolokwane Aubrey Mahasha') || !html.includes('assets/chief-mapolokwane-aubrey-mahasha.jpeg')) {
-  console.error('The current Chief’s full name or portrait is missing from the page.');
+if (!html.includes('Mr. Mapolokwane Aubrey Mahasha') || !html.includes('Current Headman') || !html.includes('assets/chief-mapolokwane-aubrey-mahasha.jpeg')) {
+  console.error('The current Headman’s full name, title or portrait is missing from the page.');
+  process.exit(1);
+}
+
+if (!html.includes('mailto:info@mothomeng.co.za') || html.includes('molozwi@gmail.com')) {
+  console.error('The official village email address is missing or the former address is still present.');
   process.exit(1);
 }
 
