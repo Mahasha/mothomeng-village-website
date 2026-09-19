@@ -34,7 +34,7 @@
     <script type="application/ld+json">
       {"@context":"https://schema.org","@type":"Place","name":"Mothomeng Village","url":"https://mothomeng.co.za/","description":"A traditional village in Ga-Modjadji, Limpopo, South Africa, under the Modjadji Queenship.","address":{"@type":"PostalAddress","addressLocality":"Ga-Modjadji","addressRegion":"Limpopo","addressCountry":"ZA"},"geo":{"@type":"GeoCoordinates","latitude":-23.640432,"longitude":30.37749},"hasMap":"https://maps.app.goo.gl/37qjnxW5KotMJM6Q8"}
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=20260825-1" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260919-1" />
     <script src="assets/site.js" defer></script>
   </head>
   <body>
@@ -99,7 +99,8 @@
           <p class="lead-copy">The Balobedu, also known as Lobedu, are a people of Limpopo historically associated with the Modjadji Rain Queen tradition.</p>
         </div>
         <div class="heritage-note reveal">
-          <span class="note-number">500</span><span class="note-unit">years</span>
+          <p class="note-context">According to local oral history</p>
+          <p class="heritage-age"><span>Approximately</span><strong>500</strong><span>years</span></p>
           <p>Local oral history remembers Mothomeng as a village with roots extending back approximately five centuries.</p>
         </div>
         <div class="oral-history reveal">
@@ -148,6 +149,13 @@
           <article class="value-card reveal"><span>03</span><h3>Unity</h3><p>Different cultural backgrounds sharing one community and a common home.</p></article>
           <article class="value-card reveal"><span>04</span><h3>Prosperity</h3><p>Responsible growth through residence, farming, trade and lawful enterprise.</p></article>
         </div>
+        <article class="community-notice reveal" aria-labelledby="roadworks-title">
+          <div>
+            <p class="eyebrow">Community notice · <time datetime="2026-09-19">19 September 2026</time></p>
+            <h3 id="roadworks-title">Gravel-road works are in progress.</h3>
+          </div>
+          <p>Construction and renewal of gravel roads are ongoing in the area. Community members, residents and visitors are asked to take care around heavy vehicles.</p>
+        </article>
       </section>
 
       <section class="living-section" id="living" aria-labelledby="living-title">
@@ -177,8 +185,12 @@
           <h2 id="contact-title">Speak with the village.</h2>
           <p>For leadership, residence, business, heritage or general community enquiries.</p>
           <div class="direct-contact"><small>Direct enquiries</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a></div>
+          <div class="contact-process">
+            <h3>What happens next</h3>
+            <p>The village office has not set a guaranteed response time. If you need to follow up, email the office and include the same name used in your enquiry.</p>
+          </div>
         </div>
-        <form class="contact-form reveal" name="village-enquiry" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
+        <form action="/thank-you" class="contact-form reveal" method="POST" name="village-enquiry" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="village-enquiry" />
           <input type="hidden" name="subject" value="New Mothomeng Village website enquiry" />
           <p class="honeypot" hidden aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
@@ -187,14 +199,19 @@
           <div class="field-row"><label for="type">Enquiry type</label><select id="type" name="enquiry-type" required><option value="" selected disabled>Select one</option><option>Residence</option><option>Business or investment</option><option>Community matter</option><option>Heritage or culture</option><option>General enquiry</option></select></div>
           <div class="field-row"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
           <button class="button button-light" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
-          <p class="form-note">Your details will be used only to respond to this enquiry.</p>
+          <p class="form-note">Your details will be used only to respond to this enquiry. <a href="#privacy">Read the privacy notice.</a></p>
         </form>
+        <aside class="privacy-notice" id="privacy" aria-labelledby="privacy-title">
+          <h3 id="privacy-title">Enquiry privacy notice</h3>
+          <p>Form submissions are processed by the website’s form service and made available to the Mothomeng Village office. The name, email address, enquiry type and message you provide are used only to assess and respond to your enquiry.</p>
+          <p>For questions about an enquiry, how its information is retained, or to request that your submitted details be updated or deleted, email <a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a>.</p>
+        </aside>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-top"><a class="footer-brand" href="#home"><span>M</span><strong>Mothomeng Village</strong></a><p>Preserving Balobedu heritage, leadership, peace and prosperity in Ga-Modjadji, Limpopo.</p></div>
-      <div class="footer-grid"><div><small>Location</small><p>Ga-Modjadji<br />Limpopo, South Africa</p></div><div><small>Administration</small><p>Greater Tzaneen Local Municipality<br />Mopani District</p></div><div><small>Contact</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a></div><nav aria-label="Footer navigation"><small>Explore</small><a href="#heritage">Heritage</a><a href="#leadership">Leadership</a><a href="#living">Living here</a></nav></div>
+      <div class="footer-grid"><div><small>Location</small><p>Ga-Modjadji<br />Limpopo, South Africa</p></div><div><small>Administration</small><p>Greater Tzaneen Local Municipality<br />Mopani District</p></div><div><small>Contact</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a><a class="footer-privacy" href="#privacy">Privacy notice</a></div><nav aria-label="Footer navigation"><small>Explore</small><a href="#heritage">Heritage</a><a href="#leadership">Leadership</a><a href="#living">Living here</a></nav></div>
       <div class="footer-bottom"><span>© <span data-year></span> Mothomeng Village</span><span>Official village information</span><a href="#home">Back to top ↑</a></div>
     </footer>
   </body>
