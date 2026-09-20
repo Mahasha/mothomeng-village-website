@@ -34,8 +34,8 @@
     <script type="application/ld+json">
       {"@context":"https://schema.org","@type":"Place","name":"Mothomeng Village","url":"https://mothomeng.co.za/","description":"A traditional village in Ga-Modjadji, Limpopo, South Africa, under the Modjadji Queenship.","address":{"@type":"PostalAddress","addressLocality":"Ga-Modjadji","addressRegion":"Limpopo","addressCountry":"ZA"},"geo":{"@type":"GeoCoordinates","latitude":-23.640432,"longitude":30.37749},"hasMap":"https://maps.app.goo.gl/37qjnxW5KotMJM6Q8"}
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=20260919-1" />
-    <script src="assets/site.js" defer></script>
+    <link rel="stylesheet" href="assets/styles.css?v=20260919-2" />
+    <script src="assets/site.js?v=20260919-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -45,13 +45,13 @@
         <span><strong>Mothomeng</strong><small>Ga-Modjadji · Limpopo</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#village">Village</a><a href="#heritage">Heritage</a><a href="#lineage">Lineage</a><a href="#leadership">Leadership</a><a href="#today">Today</a><a href="#living">Living Here</a><a href="#location">Location</a><a href="#contact">Contact</a>
+        <a href="#village">Village</a><a href="#heritage">Heritage</a><a href="#lineage">Lineage</a><a href="#leadership">Leadership</a><a href="#today">Today</a><a class="notice-nav-link" href="#notices">Notices <span class="notice-count" data-notice-count hidden></span></a><a href="#living">Living Here</a><a href="#location">Location</a><a href="#contact">Contact</a>
       </nav>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </header>
 
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
-      <a href="#village">Our Village</a><a href="#heritage">Our Heritage</a><a href="#lineage">Mahasha Lineage</a><a href="#leadership">Leadership Today</a><a href="#today">Mothomeng Today</a><a href="#living">Living Here</a><a href="#location">Location</a><a href="#contact">Contact</a>
+      <a href="#village">Our Village</a><a href="#heritage">Our Heritage</a><a href="#lineage">Mahasha Lineage</a><a href="#leadership">Leadership Today</a><a href="#today">Mothomeng Today</a><a class="notice-nav-link" href="#notices">Community Notices <span class="notice-count" data-notice-count hidden></span></a><a href="#living">Living Here</a><a href="#location">Location</a><a href="#contact">Contact</a>
     </nav>
 
     <main id="main">
@@ -149,18 +149,40 @@
           <article class="value-card reveal"><span>03</span><h3>Unity</h3><p>Different cultural backgrounds sharing one community and a common home.</p></article>
           <article class="value-card reveal"><span>04</span><h3>Prosperity</h3><p>Responsible growth through residence, farming, trade and lawful enterprise.</p></article>
         </div>
-        <article class="community-notice reveal" aria-labelledby="roadworks-title">
+      </section>
+
+      <section class="section notices-section" id="notices" aria-labelledby="notices-title">
+        <div class="notices-heading reveal">
+          <p class="eyebrow">06 · Community notices</p>
           <div>
-            <p class="eyebrow">Community notice · <time datetime="2026-09-19">19 September 2026</time></p>
-            <h3 id="roadworks-title">Gravel-road works are in progress.</h3>
+            <h2 id="notices-title">News for the community.</h2>
+            <p>Current updates from the village office appear here. Each notice remains visible for 30 days from its posting date.</p>
           </div>
-          <p>Construction and renewal of gravel roads are ongoing in the area. Community members, residents and visitors are asked to take care around heavy vehicles.</p>
-        </article>
+        </div>
+        <div class="notices-list" data-notices-list>
+          <!-- To add a notice, copy this article, use a unique heading ID, and update data-published, the visible date, heading and message. -->
+          <article class="community-notice reveal" data-notice data-published="2026-09-19" aria-labelledby="roadworks-title">
+            <div>
+              <p class="eyebrow">Posted · <time datetime="2026-09-19">19 September 2026</time></p>
+              <h3 id="roadworks-title">Gravel-road works are in progress.</h3>
+            </div>
+            <div class="notice-body">
+              <p>Construction and renewal of gravel roads are ongoing in the area. Community members, residents and visitors are asked to take care around heavy vehicles.</p>
+              <p class="notice-expiry" data-notice-expiry>Available for 30 days from posting.</p>
+            </div>
+          </article>
+        </div>
+        <div class="notices-empty" data-notices-empty role="status" hidden>
+          <span aria-hidden="true">◇</span>
+          <h3>No active community notices right now.</h3>
+          <p>New village updates will appear here when they are posted. Please check back soon or <a href="#contact">contact the village office</a> if you need help.</p>
+        </div>
+        <noscript><p class="notices-noscript">Notice dates are shown with each update. JavaScript is required for notices to be hidden automatically after 30 days.</p></noscript>
       </section>
 
       <section class="living-section" id="living" aria-labelledby="living-title">
         <div class="living-copy reveal">
-          <p class="eyebrow">06 · Living in Mothomeng</p>
+          <p class="eyebrow">07 · Living in Mothomeng</p>
           <h2 id="living-title">A place to live, build and contribute.</h2>
           <p>Mothomeng welcomes people who wish to establish a home, invest, farm, trade or conduct lawful business. Everyone who comes to the village is expected to honour village laws, community values and leadership structures.</p>
           <a class="button button-light" href="#contact">Make an enquiry</a>
@@ -170,7 +192,7 @@
 
       <section class="section location-section" id="location" aria-labelledby="location-title">
         <div class="location-copy reveal">
-          <p class="eyebrow">07 · Location</p>
+          <p class="eyebrow">08 · Location</p>
           <h2 id="location-title">Find the Mothomeng Royal House.</h2>
           <p>The Mothomeng Royal House is located in Ga-Modjadji in Limpopo Province, within the Greater Tzaneen Local Municipality and Mopani District.</p>
           <dl class="location-list"><div><dt>Exact coordinates</dt><dd>−23.640432, 30.377490</dd></div><div><dt>Province</dt><dd>Limpopo</dd></div><div><dt>Country</dt><dd>South Africa</dd></div></dl>
@@ -181,7 +203,7 @@
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <div class="contact-intro reveal">
-          <p class="eyebrow">08 · Contact</p>
+          <p class="eyebrow">09 · Contact</p>
           <h2 id="contact-title">Speak with the village.</h2>
           <p>For leadership, residence, business, heritage or general community enquiries.</p>
           <div class="direct-contact"><small>Direct enquiries</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a></div>
@@ -211,7 +233,7 @@
 
     <footer class="site-footer">
       <div class="footer-top"><a class="footer-brand" href="#home"><span>M</span><strong>Mothomeng Village</strong></a><p>Preserving Balobedu heritage, leadership, peace and prosperity in Ga-Modjadji, Limpopo.</p></div>
-      <div class="footer-grid"><div><small>Location</small><p>Ga-Modjadji<br />Limpopo, South Africa</p></div><div><small>Administration</small><p>Greater Tzaneen Local Municipality<br />Mopani District</p></div><div><small>Contact</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a><a class="footer-privacy" href="#privacy">Privacy notice</a></div><nav aria-label="Footer navigation"><small>Explore</small><a href="#heritage">Heritage</a><a href="#leadership">Leadership</a><a href="#living">Living here</a></nav></div>
+      <div class="footer-grid"><div><small>Location</small><p>Ga-Modjadji<br />Limpopo, South Africa</p></div><div><small>Administration</small><p>Greater Tzaneen Local Municipality<br />Mopani District</p></div><div><small>Contact</small><a href="mailto:info@mothomeng.co.za">info@mothomeng.co.za</a><a class="footer-privacy" href="#privacy">Privacy notice</a></div><nav aria-label="Footer navigation"><small>Explore</small><a href="#notices">Community notices</a><a href="#heritage">Heritage</a><a href="#leadership">Leadership</a><a href="#living">Living here</a></nav></div>
       <div class="footer-bottom"><span>© <span data-year></span> Mothomeng Village</span><span>Official village information</span><a href="#home">Back to top ↑</a></div>
     </footer>
   </body>

@@ -4,7 +4,7 @@ const missing = [];
 for (const file of required) { try { await access(file); } catch { missing.push(file); } }
 if (missing.length) { console.error(`Missing required files:\n- ${missing.join('\n- ')}`); process.exit(1); }
 const html = await readFile('index.html','utf8');
-const checks = ['https://mothomeng.co.za/','data-netlify="true"','id="lineage"','id="leadership"','id="contact"','https://maps.app.goo.gl/37qjnxW5KotMJM6Q8','−23.640432, 30.377490'];
+const checks = ['https://mothomeng.co.za/','data-netlify="true"','id="lineage"','id="leadership"','id="notices"','data-notice','data-published="2026-09-19"','data-notices-empty','id="contact"','https://maps.app.goo.gl/37qjnxW5KotMJM6Q8','−23.640432, 30.377490'];
 const absent = checks.filter((value) => !html.includes(value));
 if (absent.length) { console.error(`Required markup not found:\n- ${absent.join('\n- ')}`); process.exit(1); }
 
@@ -16,7 +16,7 @@ if (brokenHashLinks.length) {
   process.exit(1);
 }
 
-const expectedMenuTargets = ['village','heritage','lineage','leadership','today','living','location','contact'];
+const expectedMenuTargets = ['village','heritage','lineage','leadership','today','notices','living','location','contact'];
 const missingMenuTargets = expectedMenuTargets.filter((target) => !hashLinks.includes(target) || !ids.has(target));
 if (missingMenuTargets.length) {
   console.error(`Required menu routes are missing:\n- ${missingMenuTargets.join('\n- ')}`);
