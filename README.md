@@ -70,3 +70,9 @@ The canonical, Open Graph, sitemap and robots URLs are already set to `https://m
 The site uses a defined type scale, body text and labels at 16px or larger, an 8px spacing rhythm, and 180ms feedback for menu and button interactions. Content remains visible when JavaScript is unavailable. Brand accents are restricted to forest green, ochre and red alongside warm paper and ink. The existing Headman photograph, leadership names, oral-history qualifications, enquiry form and exact Royal House pin are retained.
 
 Community notices appear below the introduction. The village directory and visit-planning panel connect visitors to notices, residence enquiries and directions. Mobile navigation supports Escape, keyboard focus containment and closing when switching to the desktop layout. Notices refresh on tab return and every minute.
+
+### Compact spacing and tab icon
+
+Section padding is 40–64px. The village introduction uses two columns on desktop, with its label, heading and facts grouped together beside the copy, and stacks on smaller screens. Desktop portraits and the lineage timeline are constrained to avoid unnecessary vertical space.
+
+The browser-tab favicon is `assets/bright-fusion-favicon.png`, an unchanged copy of the amber icon published by the Bright Fusion at `https://thebrightfusion.co.za/wp-content/uploads/2024/08/2c6952ee-d00e-8160-8004-cdf4fe30cfd9.png`, reused at the site owner's request. All three HTML pages use it; home-screen icons retain the village monogram.
