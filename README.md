@@ -58,9 +58,15 @@ The canonical, Open Graph, sitemap and robots URLs are already set to `https://m
 
 - `index.html` — all public page content and metadata
 - `assets/styles.css` — responsive visual system
-- `assets/site.js` — menu, header and reveal behaviour
+- `assets/site.js` — accessible menu, header and notice expiry behaviour
 - `assets/og-mothomeng.png` — social sharing card
 - `assets/chief-mapolokwane-aubrey-mahasha.jpeg` — approved portrait of the current Headman
 - `netlify.toml` — build, caching and security headers
 - `robots.txt`, `sitemap.xml`, `site.webmanifest` — discovery and install metadata
 - `scripts/` — dependency-free local server and project checks
+
+## October 2026 design refinement
+
+The site uses a defined type scale, body text and labels at 16px or larger, an 8px spacing rhythm, and 180ms feedback for menu and button interactions. Content remains visible when JavaScript is unavailable. Brand accents are restricted to forest green, ochre and red alongside warm paper and ink. The existing Headman photograph, leadership names, oral-history qualifications, enquiry form and exact Royal House pin are retained.
+
+Community notices appear below the introduction. The village directory and visit-planning panel connect visitors to notices, residence enquiries and directions. Mobile navigation supports Escape, keyboard focus containment and closing when switching to the desktop layout. Notices refresh on tab return and every minute.

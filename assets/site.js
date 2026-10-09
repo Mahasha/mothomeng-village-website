@@ -1,3 +1,4 @@
+document.documentElement.classList.add('has-js');
 const header = document.querySelector('[data-header]');
 const menuButton = document.querySelector('.menu-button');
 const mobileMenu = document.querySelector('#mobile-menu');
@@ -11,24 +12,62 @@ const updateHeader = () => header?.classList.toggle('is-scrolled', window.scroll
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-const closeMenu = () => {
+const menuContent = [document.querySelector('main'), document.querySelector('.site-footer')];
+
+const closeMenu = (restoreFocus = false) => {
   if (!menuButton || !mobileMenu) return;
+  const wasOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-label', 'Open navigation');
   mobileMenu.hidden = true;
   document.body.classList.remove('menu-open');
+  menuContent.forEach((element) => { if (element) element.inert = false; });
+  if (wasOpen && restoreFocus) menuButton.focus();
 };
 
 menuButton?.addEventListener('click', () => {
-  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-  mobileMenu.hidden = isOpen;
-  document.body.classList.toggle('menu-open', !isOpen);
+  if (!mobileMenu) return;
+  if (menuButton.getAttribute('aria-expanded') === 'true') {
+    closeMenu(true);
+    return;
+  }
+  menuButton.setAttribute('aria-expanded', 'true');
+  menuButton.setAttribute('aria-label', 'Close navigation');
+  mobileMenu.hidden = false;
+  document.body.classList.add('menu-open');
+  menuContent.forEach((element) => { if (element) element.inert = true; });
+  mobileMenu.querySelector('a')?.focus();
 });
 
-mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-window.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+  closeMenu();
+  const target = document.querySelector(link.getAttribute('href'));
+  if (target) {
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+}));
+document.querySelector('.brand')?.addEventListener('click', () => closeMenu());
+window.addEventListener('keydown', (event) => {
+  if (menuButton?.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') closeMenu(true);
+  if (event.key !== 'Tab') return;
+  const links = [...mobileMenu.querySelectorAll('a')];
+  const last = links.at(-1);
+  if (event.shiftKey && (document.activeElement === links[0] || document.activeElement === menuButton)) {
+    event.preventDefault();
+    (document.activeElement === links[0] ? menuButton : last)?.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    menuButton.focus();
+  } else if (!event.shiftKey && document.activeElement === menuButton) {
+    event.preventDefault();
+    links[0]?.focus();
+  }
+});
+window.matchMedia('(min-width: 1201px)').addEventListener('change', (event) => {
+  if (event.matches) closeMenu();
+});
 
 if (year) year.textContent = String(new Date().getFullYear());
 
@@ -70,17 +109,8 @@ const updateNotices = (now = Date.now()) => {
 
 updateNotices();
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const revealItems = document.querySelectorAll('.reveal');
-if (reduceMotion || !('IntersectionObserver' in window)) {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-} else {
-  const observer = new IntersectionObserver((entries, instance) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      instance.unobserve(entry.target);
-    });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  revealItems.forEach((item) => observer.observe(item));
-}
+// Refresh notices when a long-lived tab returns to the foreground.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) updateNotices();
+});
+setInterval(updateNotices, 60_000);
