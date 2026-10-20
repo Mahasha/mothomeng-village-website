@@ -1,7 +1,8 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
-const root = process.cwd();
+// Serves the built site. Run `npm run dev`, which builds first.
+const root = join(process.cwd(), 'dist');
 const port = Number(process.env.PORT || 4173);
 const types = { '.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.xml':'application/xml; charset=utf-8','.txt':'text/plain; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon' };
 createServer(async (request, response) => {

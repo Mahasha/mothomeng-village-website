@@ -1,0 +1,13 @@
+{
+  "$comment": "Community notices. Each notice needs a unique id (lowercase letters, numbers and hyphens), a published date (YYYY-MM-DD) and a title. 'expires' is the last day the notice is shown (YYYY-MM-DD); leave it out to show the notice for 30 days. 'body' is a list of plain-text paragraphs. The build fails, and the live site stays unchanged, if this file is invalid.",
+  "notices": [
+    {
+      "id": "roadworks-2026-09",
+      "published": "2026-09-19",
+      "title": "Gravel-road works are in progress.",
+      "body": [
+        "Construction and renewal of gravel roads are ongoing in the area. Community members, residents and visitors are asked to take care around heavy vehicles."
+      ]
+    }
+  ]
+}

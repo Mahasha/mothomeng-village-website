@@ -16,7 +16,7 @@ Open `http://localhost:4173`. Run the project checks with:
 npm run build
 ```
 
-There are no packages to install and no generated build directory. The project is served directly as static files.
+There are no packages to install. The build copies the static files into `dist/` and renders the community notices from `data/notices.json` into `dist/index.html`. `npm run dev` builds first, then serves `dist/`.
 
 ## Deploy to Netlify
 
@@ -24,14 +24,14 @@ There are no packages to install and no generated build directory. The project i
 
 1. Push this folder to a Git repository.
 2. In Netlify, choose **Add new project → Import an existing project** and select the repository.
-3. Netlify reads `netlify.toml`; the build command is `npm run build` and the publish directory is the project root (`.`).
+3. Netlify reads `netlify.toml`; the build command is `npm run build` and the publish directory is `dist`.
 4. Deploy the project.
 5. In Netlify, open **Forms** and select **Enable form detection**, then redeploy. The contact form will appear as `village-enquiry`.
 6. Configure a form-submission email notification for the village contact address if required.
 
 ### Manual deploy
 
-Because the site has no compiled output, you can also upload the unzipped project folder to Netlify Drop. Keep `netlify.toml` at the uploaded folder root.
+Run `npm run build` and upload the `dist/` folder to Netlify Drop. Deploying from Git is preferred: it keeps a history of every change and runs the checks on each deploy.
 
 ## Connect `mothomeng.co.za`
 
@@ -56,23 +56,50 @@ The canonical, Open Graph, sitemap and robots URLs are already set to `https://m
 
 ## Project map
 
-- `index.html` — all public page content and metadata
+- `index.html` — all public page content and metadata (except notices)
+- `data/notices.json` — community notices
 - `assets/styles.css` — responsive visual system
-- `assets/site.js` — accessible menu, header and notice expiry behaviour
-- `assets/og-mothomeng.png` — social sharing card
+- `assets/site.js` — accessible menu, header and in-browser notice expiry
+- `assets/og-mothomeng.jpg` — social sharing card
 - `assets/chief-mapolokwane-aubrey-mahasha.jpeg` — approved portrait of the current Headman
 - `netlify.toml` — build, caching and security headers
 - `robots.txt`, `sitemap.xml`, `site.webmanifest` — discovery and install metadata
-- `scripts/` — dependency-free local server and project checks
+- `scripts/build.mjs` — builds `dist/`, validates and renders notices
+- `scripts/check.mjs` — checks the built site
+- `scripts/serve.mjs` — local preview server for `dist/`
+- `.github/workflows/daily-rebuild.yml` — daily Netlify rebuild so expired notices are removed
 
 ## October 2026 design refinement
 
 The site uses a defined type scale, body text and labels at 16px or larger, an 8px spacing rhythm, and 180ms feedback for menu and button interactions. Content remains visible when JavaScript is unavailable. Brand accents are restricted to forest green, ochre and red alongside warm paper and ink. The existing Headman photograph, leadership names, oral-history qualifications, enquiry form and exact Royal House pin are retained.
 
-Community notices appear below the introduction. The village directory and visit-planning panel connect visitors to notices, residence enquiries and directions. Mobile navigation supports Escape, keyboard focus containment and closing when switching to the desktop layout. Notices refresh on tab return and every minute.
+Community notices appear below the introduction. The village directory and visit-planning panel connect visitors to notices, residence enquiries and directions. Mobile navigation supports Escape, keyboard focus containment and closing when switching to the desktop layout. Notices are rendered at build time and re-checked in the browser on tab return and every minute.
 
 ### Compact spacing and tab icon
 
 Section padding is 40–64px. The village introduction uses two columns on desktop, with its label, heading and facts grouped together beside the copy, and stacks on smaller screens. Desktop portraits and the lineage timeline are constrained to avoid unnecessary vertical space.
 
 The browser-tab favicon is `assets/bright-fusion-favicon.png`, an unchanged copy of the amber icon published by the Bright Fusion at `https://thebrightfusion.co.za/wp-content/uploads/2024/08/2c6952ee-d00e-8160-8004-cdf4fe30cfd9.png`, reused at the site owner's request. All three HTML pages use it; home-screen icons retain the village monogram.
+
+## Community notices
+
+Notices live in `data/notices.json`, not in `index.html`. To post one, add an entry and commit it to `main`:
+
+```json
+{
+  "id": "water-outage-2026-11",
+  "published": "2026-11-03",
+  "expires": "2026-11-10",
+  "title": "Water supply interruption on 5 November.",
+  "body": ["First paragraph.", "Optional second paragraph."]
+}
+```
+
+- `id`: unique; lowercase letters, numbers and hyphens. It also becomes the notice's link, for example `https://mothomeng.co.za/#notice-water-outage-2026-11`.
+- `published`: the date the notice starts showing.
+- `expires`: optional. The last day the notice is shown. Leave it out to show the notice for 30 days. For ongoing work, set it to the expected end date and extend it if needed.
+- `body`: plain text only; HTML is shown as text.
+
+Each build includes only notices active on that day (Africa/Johannesburg). If the file is invalid, the build fails with a list of problems and the live site stays as it was. A daily rebuild, set up in `.github/workflows/daily-rebuild.yml`, removes expired notices from the published page. The browser also hides a notice once it expires, for pages that are already open.
+
+To preview a notice on a specific date: `BUILD_DATE=2026-11-05 npm run dev`.
