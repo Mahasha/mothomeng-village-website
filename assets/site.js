@@ -71,32 +71,22 @@ window.matchMedia('(min-width: 1201px)').addEventListener('change', (event) => {
 
 if (year) year.textContent = String(new Date().getFullYear());
 
-const noticeLifetime = 30 * 24 * 60 * 60 * 1000;
-const noticeDateFormatter = new Intl.DateTimeFormat('en-ZA', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'Africa/Johannesburg',
-});
+// The build renders only notices that are active on the build date.
+// This hides any that expire before the next rebuild, for pages already open or cached.
+// data-expires is the last day a notice is shown, in Africa/Johannesburg time.
+const startOfDay = (isoDate) => new Date(`${isoDate}T00:00:00+02:00`).getTime();
+const dayMs = 24 * 60 * 60 * 1000;
 
 const updateNotices = (now = Date.now()) => {
   let activeCount = 0;
 
   notices.forEach((notice) => {
-    const published = notice.dataset.published;
-    const publishedAt = new Date(`${published}T00:00:00+02:00`).getTime();
-    const expiresAt = publishedAt + noticeLifetime;
-    const isActive = Number.isFinite(publishedAt) && now >= publishedAt && now < expiresAt;
+    const publishedAt = startOfDay(notice.dataset.published);
+    const endsAt = startOfDay(notice.dataset.expires) + dayMs;
+    const isActive = Number.isFinite(publishedAt) && Number.isFinite(endsAt) && now >= publishedAt && now < endsAt;
 
     notice.hidden = !isActive;
-    if (!isActive) return;
-
-    activeCount += 1;
-    const expiry = notice.querySelector('[data-notice-expiry]');
-    if (expiry) {
-      const lastVisibleDay = new Date(expiresAt - 1);
-      expiry.textContent = `Available through ${noticeDateFormatter.format(lastVisibleDay)}.`;
-    }
+    if (isActive) activeCount += 1;
   });
 
   if (noticeList) noticeList.hidden = activeCount === 0;

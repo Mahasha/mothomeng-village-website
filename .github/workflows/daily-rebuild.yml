@@ -1,0 +1,35 @@
+# Rebuilds the site on Netlify shortly after midnight (South African time) every day,
+# so expired community notices are removed from the published HTML, not only hidden
+# by JavaScript.
+#
+# One-time setup:
+#   1. Netlify → Project configuration → Build & deploy → Build hooks → Add build hook
+#      (name: "Daily notice rebuild", branch: main). Copy the URL.
+#   2. GitHub → Settings → Secrets and variables → Actions → New repository secret
+#      Name: NETLIFY_BUILD_HOOK_URL, value: the URL from step 1.
+#
+# The hook URL can trigger builds, so keep it in the secret only.
+
+name: Daily notice rebuild
+
+on:
+  schedule:
+    - cron: "5 22 * * *" # 22:05 UTC = 00:05 Africa/Johannesburg
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Netlify build hook
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::warning::NETLIFY_BUILD_HOOK_URL is not set; skipping the rebuild."
+            exit 0
+          fi
+          curl --fail --silent --show-error --retry 3 -X POST -d '{}' "$HOOK?trigger_title=Daily+notice+rebuild"
