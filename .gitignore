@@ -3,3 +3,6 @@ node_modules/
 .netlify/
 dist/
 *.log
+
+# Unused Sites/Cloudflare edition of the site; the live site is the Netlify build above.
+sites/
